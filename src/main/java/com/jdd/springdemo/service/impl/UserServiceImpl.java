@@ -18,33 +18,22 @@ import java.util.List;
 @Service()
 public class UserServiceImpl implements UserService {
 
+    @Autowired
+    private UserMapper userMapper;
 
     @Override
     public List<User> getUserList() throws IOException {
-        InputStream resourceAsStream = Resources.getResourceAsStream("sqlMapConfig.xml");
-        SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(resourceAsStream);
-        SqlSession sqlSession = sqlSessionFactory.openSession();
-        UserMapper mapper = sqlSession.getMapper(UserMapper.class);
 
-        List<User> allUser = mapper.getAllUser();
-
-        sqlSession.commit();
-        sqlSession.close();
-
+        List<User> allUser = userMapper.getAllUser();
         return allUser;
     }
 
     @Override
     public void save(User user) throws IOException {
-        InputStream resourceAsStream = Resources.getResourceAsStream("sqlMapConfig.xml");
-        SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(resourceAsStream);
-        SqlSession sqlSession = sqlSessionFactory.openSession();
-        UserMapper mapper = sqlSession.getMapper(UserMapper.class);
 
-        mapper.save(user);
 
-        sqlSession.commit();
-        sqlSession.close();
+        userMapper.save(user);
+
 
     }
 }

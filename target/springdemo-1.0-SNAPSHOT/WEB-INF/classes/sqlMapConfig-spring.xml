@@ -9,8 +9,4 @@
         <!--<typeAlias type="com.itheima.domain.Account" alias="account"></typeAlias>-->
         <package name="com.jdd.springdemo.domain"/>
     </typeAliases>
-
-
-
-
 </configuration>
